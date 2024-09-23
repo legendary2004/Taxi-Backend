@@ -72,7 +72,7 @@ function sendEmail(from, to, subject, text) {
     let transporter = nodemailer.createTransport({
         host: process.env.host,
         port: process.env.port,
-        secure: process.env.secure, 
+        secureConnection: process.env.secure, 
         auth: {
             user: process.env.email,
             pass: process.env.pass
