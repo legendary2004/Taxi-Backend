@@ -173,7 +173,7 @@ app.post("/login", (req, res) => {
       else {
           res.send({
             message: "",
-            user: JSON.stringify(result[0])
+            user: result[0]
           })
       }
   })
