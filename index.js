@@ -209,6 +209,7 @@ app.post("/getAllBookings", (req, res) => {
 app.post("/contact", (req, res) => {
     const {email, subject, message} = req.body
 
+    sendEmail(process.env.email, email, "Message recieved", "Hello user. Thank you for reaching us out. One of our team members will reach out to you soon.")
     sendEmail(email, process.env.email, subject, message)
     res.send({
         message: "Thank you!"
