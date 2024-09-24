@@ -180,7 +180,7 @@ app.post("/login", (req, res) => {
 })
 
 app.post("/confirmBooking", (req, res) => {
-    const {email, phone, date, time, message origin, destination} = req.body
+    const {email, phone, date, time, message, origin, destination} = req.body
 
     db.query("INSERT INTO bookings SET ?", {email, phone, date, time, message, origin, destination}, (error, results) => {
         if (error) {
