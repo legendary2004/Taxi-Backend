@@ -180,16 +180,26 @@ app.post("/login", (req, res) => {
 })
 
 app.post("/confirmBooking", (req, res) => {
-    const {email, phone, date, time, origin, destination} = req.body
+    const {email, phone, date, time, message origin, destination} = req.body
 
-    db.query("INSERT INTO bookings SET ?", {email, phone, date, time, origin, destination}, (error, results) => {
+    db.query("INSERT INTO bookings SET ?", {email, phone, date, time, message, origin, destination}, (error, results) => {
         if (error) {
             res.send({
                 message: error
             })
         }
         else {
-            sendEmail(process.env.email, process.env.email, "Booking", `A booking has just been placed.`)
+            sendEmail(process.env.email, process.env.email, "Booking", `A booking has just been placed by the following user:
+                ${
+                    email,
+                    phone,
+                    date,
+                    time,
+                    message,
+                    origin, 
+                    destination
+                }
+            `)
             sendEmail(process.env.email, email, "Booking", `Hello traveler. Thank you for trusting our service. A driver will come to pick you up at that specific time.`)
             res.send({
                 message: "Booking confirmed. Thank you."
