@@ -227,7 +227,7 @@ app.post("/deleteBooking", (req, res) => {
             getAllBookings(res)
         }   
     })
-}
+})
 
 app.post("/contact", (req, res) => {
     const {email, subject, message} = req.body
