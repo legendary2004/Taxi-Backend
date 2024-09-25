@@ -103,6 +103,17 @@ function generateNumber(res, from, to) {
   })
 }
 
+const getAllBookings = (res) => {
+    db.query("SELECT * FROM bookings", (err, result) => {
+        if (err) console.log(err)
+        else {
+            res.send({
+                bookings: result
+            })
+        }
+    })
+}
+
 app.post("/register", (req, res) => {
     const {email, pass, passRepeat} = req.body
 
@@ -206,21 +217,14 @@ app.post("/confirmBooking", (req, res) => {
 })
 
 app.post("/getAllBookings", (req, res) => {
-    db.query("SELECT * FROM bookings", (err, result) => {
-        if (err) console.log(err)
-        else {
-            res.send({
-                bookings: result
-            })
-        }
-    })
+    getAllBookings(res)
 })
 
 app.post("/deleteBooking", (req, res) => {
     db.query("DELETE FROM bookings WHERE id = ?", [req.body.id], (err, result) => {
         if (err) console.log(err)
         else {
-            getAllPets(res)
+            getAllBookings(res)
         }   
     })
 }
