@@ -216,6 +216,15 @@ app.post("/getAllBookings", (req, res) => {
     })
 })
 
+app.post("/deleteBooking", (req, res) => {
+    db.query("DELETE FROM bookings WHERE id = ?", [req.body.id], (err, result) => {
+        if (err) console.log(err)
+        else {
+            getAllPets(res)
+        }   
+    })
+}
+
 app.post("/contact", (req, res) => {
     const {email, subject, message} = req.body
 
