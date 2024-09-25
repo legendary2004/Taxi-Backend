@@ -192,7 +192,7 @@ app.post("/confirmBooking", (req, res) => {
             sendEmail(process.env.email, process.env.email, "Booking", `A booking has just been placed by the following user:
                 Email - ${email},
                 Phone - ${phone},
-                Date - ${date - time}
+                Date - ${date} - ${time}
                 Message - ${message}
                 Pickup location - ${origin}
                 Dropoff location - ${destination}
