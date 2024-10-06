@@ -191,9 +191,9 @@ app.post("/login", (req, res) => {
 })
 
 app.post("/confirmBooking", (req, res) => {
-    const {email, phone, date, time, message, origin, destination} = req.body
+    const {firstName, lastName, country, email, phone, date, time, message, origin, destination} = req.body
 
-    db.query("INSERT INTO bookings SET ?", {email, phone, date, time, message, origin, destination}, (error, results) => {
+    db.query("INSERT INTO bookings SET ?", {firstName, lastName, country, email, phone, date, time, message, origin, destination}, (error, results) => {
         if (error) {
             res.send({
                 message: error
@@ -201,11 +201,14 @@ app.post("/confirmBooking", (req, res) => {
         }
         else {
             sendEmail(process.env.email, process.env.email, "Booking", `A booking has just been placed by the following user:
+                FirstName - ${firstName},
+                LastName - ${lastName},
+                Country - ${country},
                 Email - ${email},
                 Phone - ${phone},
-                Date - ${date} - ${time}
-                Message - ${message}
-                Pickup location - ${origin}
+                Date - ${date - time},
+                Message - ${message},
+                Pickup location - ${origin},
                 Dropoff location - ${destination}
             `)
             sendEmail(process.env.email, email, "AlbVoyage Booking", `Hello traveler. Thank you for trusting our services. We will contact you very soon for further information.`)
