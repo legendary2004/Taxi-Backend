@@ -74,7 +74,7 @@ function sendEmail(from, to, subject, text) {
         port: process.env.port,
         secureConnection: process.env.secure, 
         auth: {
-            user: process.env.email,
+            user: process.env.conEmail,
             pass: process.env.pass
         }
     });
