@@ -208,9 +208,9 @@ app.post("/confirmBooking", (req, res) => {
                 Pickup location - ${origin}
                 Dropoff location - ${destination}
             `)
-            sendEmail(process.env.email, email, "Booking", `Hello traveler. Thank you for trusting our service. A driver will come to pick you up at that specific time.`)
+            sendEmail(process.env.email, email, "AlbVoyage Booking", `Hello traveler. Thank you for trusting our services. We will contact you very soon for further information.`)
             res.send({
-                message: "Booking confirmed. Thank you."
+                message: "Booking recieved. Thank you."
             })
         }
     })
