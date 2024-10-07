@@ -28,7 +28,7 @@ const db = mysql.createConnection({
 
 db.connect(error => {
     if (error) {
-        console.log("Cant connect");
+        console.log(error);
     }
     else {
         console.log("Connected");
