@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2';
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import path from "path";
 import ElasticEmail from "@elasticemail/elasticemail-client";
 import nodemailer from "nodemailer"
 import { profileUpload } from "./profileUpload.js"
