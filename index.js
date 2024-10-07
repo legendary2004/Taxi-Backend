@@ -16,7 +16,7 @@ const port = 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, '/opt/render/project/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
