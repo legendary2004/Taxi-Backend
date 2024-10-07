@@ -15,6 +15,7 @@ const app = express();
 const port = 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const buildPath = path.join(__dirname, '../build');
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.urlencoded({ extended: false }));
@@ -252,8 +253,8 @@ app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-app.get('*', (req, res) => { res.sendFile(path.join(__dirname, 'build', 'index.html')); });
-console.log('Serving from:', path.join(__dirname, 'build'));
+app.get('*', (req, res) => { res.sendFile(path.join(buildPath, 'index.html')); });
+console.log('Serving from:', buildPath);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
