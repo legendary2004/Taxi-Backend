@@ -16,7 +16,7 @@ const port = 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '/opt/render/project/build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
@@ -252,7 +252,7 @@ app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-// app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '../build', 'index.html')); });
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '/opt/render/project/build', 'index.html')); });
 console.log('Serving from:', path.join(__dirname, '../build'));
 
 app.listen(port, () => {
