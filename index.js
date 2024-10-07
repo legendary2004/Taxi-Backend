@@ -252,8 +252,8 @@ app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '/opt/render/project/build', 'index.html')); });
-console.log('Serving from:', path.join(__dirname, '../build'));
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname, 'build', 'index.html')); });
+console.log('Serving from:', path.join(__dirname, 'build'));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
