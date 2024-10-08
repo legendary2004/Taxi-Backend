@@ -37,7 +37,7 @@ const createPool = () => {
     database: process.env.db_name,
     port: process.env.db_port,
     waitForConnections: true,
-    connectionLimit: 10,
+    connectionLimit: 250,
     queueLimit: 0,
   });
 
