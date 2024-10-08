@@ -62,7 +62,7 @@ db.connect(error => {
 
 function sendEmail(from, to, subject, text) {
     let transporter = nodemailer.createTransport({
-        host: process.env.host,
+        service: process.env.host,
         port: process.env.port,
         secureConnection: process.env.secure, 
         auth: {
