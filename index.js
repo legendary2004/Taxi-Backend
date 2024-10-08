@@ -13,17 +13,11 @@ dotenv.config({path: './.env'})
 
 const app = express();
 const port = 5000;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const buildPath = path.join(__dirname, '../build');
 
-app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-
-
 
 const db = mysql.createConnection({
     host: process.env.db_host, 
@@ -65,39 +59,6 @@ db.connect(error => {
         console.log("Connected");
     }
 })
-
-// function sendEmail(email, subject, message) {
-//     let defaultClient = ElasticEmail.ApiClient.instance;
- 
-//     let apikey = defaultClient.authentications['apikey'];
-//     apikey.apiKey = process.env.api_key
-
-//     const api = new ElasticEmail.EmailsApi();
-
-//     const emailToSend = ElasticEmail.EmailMessageData.constructFromObject({
-//       Recipients: [
-//         new ElasticEmail.EmailRecipient(email)
-//       ],
-//       Content: {
-//         Body: [
-//           ElasticEmail.BodyPart.constructFromObject({
-//             ContentType: "HTML",
-//             Content: message
-//           })
-//         ],
-//         Subject: subject,
-//         From: process.env.email
-//       }
-//     });
-      
-//     var callback = function(error, data, response) {
-//       if (error) {
-//         console.error(error);
-//         return;
-//       }
-//     };
-//     api.emailsPost(emailToSend, callback);
-// }
 
 function sendEmail(from, to, subject, text) {
     let transporter = nodemailer.createTransport({
@@ -276,9 +237,6 @@ app.post("/contact", (req, res) => {
 app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
-
-app.get('*', (req, res) => { res.sendFile(path.join(buildPath, 'index.html')); });
-console.log('Serving from:', buildPath);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
