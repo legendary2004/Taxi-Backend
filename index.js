@@ -33,6 +33,30 @@ const db = mysql.createConnection({
     port: process.env.db_port
 })
 
+let pool;
+
+const createPool = () => {
+  pool = mysql.createPool({
+    host: process.env.db_host,
+    user: process.env.db_user,
+    password: process.env.db_pass,
+    database: process.env.db_name,
+    port: process.env.db_port
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+  });
+
+  pool.on('error', (err) => {
+    console.error('Database connection error', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      createPool(); // Recreate the pool if connection is lost
+    }
+  });
+};
+
+createPool();
+
 db.connect(error => {
     if (error) {
         console.log(error);
